@@ -1,0 +1,15 @@
+- hosts: 172.31.2.73
+  tasks:
+    - name: install apache
+      yum:
+        name: httpd
+       git  state: present
+    - name: copy code to remote machine
+      copy:
+        src: index.html
+        dest: /var/www/html/
+    - name: start apache
+      service:
+        name: httpd
+        enabled: yes
+        state: started
